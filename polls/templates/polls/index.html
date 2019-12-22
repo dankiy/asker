@@ -1,0 +1,25 @@
+{% extends  'polls_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block main %}
+
+<div class="card">
+<div class="card-body">
+<h4 class="card-title">Avaliable polls</h4>
+
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+
+</div>
+</div>
+
+<a class="btn btn-primary btn-lg btn-logout btn-block" href="../../../accounts/logout">Logout</a>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends  'polls_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block main %}
+
+<div class="card">
+<div class="card-body">
+<h4 class="card-title">{{ question.question_text }}</h4>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }} -- {{ choice.num_votes }} vote{{ choice.votes|pluralize }}</li>
+{% endfor %}
+</ul>
+</div>
+</div>
+
+<a href="{% url 'polls:index' %}">Vote again?</a>
+
+<a href="../../../accounts/logout">Logout</a>
+
+{% endblock %}
