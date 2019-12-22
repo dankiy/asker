@@ -58,7 +58,8 @@ def vote(request, question_id):
             session = boto3.Session(
                 aws_access_key_id=os.environ['AWS_ACCESS_KEY'],
                 aws_secret_access_key=os.environ['AWS_SECRET_KEY'],
-                aws_session_token=os.environ['AWS_SESSION_TOKEN']
+                aws_session_token=os.environ['AWS_SESSION_TOKEN'],
+                region_name=os.environ['AWS_REGION']
             )
             sns = session.client('sns')
             response = sns.publish(
