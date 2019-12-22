@@ -54,7 +54,11 @@ def vote(request, question_id):
         selected_choice.save()
 
         if question.notifications:
-            session = boto3.session.Session()
+            session = boto3.Session(
+                aws_access_key_id=AWS_ACCESS_KEY,
+                aws_secret_access_key=AWS_SECRET_KEY,
+                aws_session_token=AWS_SESSION_TOKEN,
+            )
             sns = session.client('sns')
             response = sns.publish(
                 TopicArn='arn:aws:sns:us-east-1:716390431917:Polls',
