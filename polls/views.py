@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 from .models import Choice, Question
+import os
 import boto3
 import botocore.session
 
@@ -55,9 +56,9 @@ def vote(request, question_id):
 
         if question.notifications:
             session = boto3.Session(
-                aws_access_key_id=AWS_ACCESS_KEY,
-                aws_secret_access_key=AWS_SECRET_KEY,
-                aws_session_token=AWS_SESSION_TOKEN,
+                aws_access_key_id=os.environ['AWS_ACCESS_KEY'],
+                aws_secret_access_key=os.environ['AWS_SECRET_KEY'],
+                aws_session_token=os.environ['AWS_SESSION_TOKEN']
             )
             sns = session.client('sns')
             response = sns.publish(
