@@ -1,10 +1,12 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views import generic
 from django.utils import timezone
+from django.db import transaction
 from .models import Choice, Question
+from .forms import *
 import os
 import boto3
 import botocore.session
@@ -33,6 +35,34 @@ class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
 
+
+class QuestionCreate(generic.CreateView):
+    model = Question
+    template_name = 'polls/create.html'
+    form_class = QuestionForm
+    success_url = None
+
+    def get_context_data(self, **kwargs):
+        data = super(QuestionCreate, self).get_context_data(**kwargs)
+        if self.request.POST:
+            data['choices'] = ChoiceFormSet(self.request.POST)
+        else:
+            data['choices'] = ChoiceFormSet()
+        return data
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        choices = context['choices']
+        with transaction.atomic():
+            form.instance.created_by = self.request.user
+            self.object = form.save()
+            if choices.is_valid():
+                choices.instance = self.object
+                choices.save()
+        return super(QuestionCreate, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('polls:detail', kwargs={'pk': self.object.pk})
 
 @login_required
 def vote(request, question_id):
