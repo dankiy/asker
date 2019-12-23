@@ -12,7 +12,7 @@ class ChoiceForm(forms.ModelForm):
         model = Choice
         exclude = ()
 
-CollectionTitleFormSet = inlineformset_factory(
+ChoiceFormSet = inlineformset_factory(
     Question, Choice, form=ChoiceForm,
     fields=['choice_text'], extra=1, can_delete=True
     )
