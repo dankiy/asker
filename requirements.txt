@@ -23,6 +23,7 @@ distro==1.4.0
 Django==2.2
 django-allauth==0.41.0
 django-crispy-forms==1.8.1
+django-rest-swagger==2.2.0
 djongo==1.2.38
 dnspython==1.16.0
 docutils==0.15.2

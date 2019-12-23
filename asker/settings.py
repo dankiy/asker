@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['nameless-badlands-74513.herokuapp.com','127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework_swagger',
     'accounts',
     'polls.apps.PollsConfig',
     'django.contrib.admin',
