@@ -22,7 +22,7 @@ class QuestionForm(forms.ModelForm):
 
     class Meta:
         model = Question
-        exclude = ()
+        exclude = ['pub_date', 'notifications', 'was_published_recently']
 
     def __init__(self, *args, **kwargs):
         super(QuestionForm, self).__init__(*args, **kwargs)
