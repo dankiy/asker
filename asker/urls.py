@@ -22,5 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('allauth.urls')),
-    path('openapi', get_schema_view(), name='openapi-schema'),
+    path('openapi', get_schema_view(urlconf='polls.urls'), name='openapi-schema'),
 ]
