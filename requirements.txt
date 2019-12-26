@@ -20,7 +20,7 @@ decorator==4.4.1
 defusedxml==0.6.0
 distlib==0.3.0
 distro==1.4.0
-Django==2.2
+Django==2.2.8
 django-allauth==0.41.0
 django-crispy-forms==1.8.1
 djangorestframework==3.10.0
