@@ -1,4 +1,4 @@
-from .models import Question, Choice
+from ..models import Question, Choice
 from rest_framework import serializers
 
 class QuestionSerializer(serializers.ModelSerializer):
