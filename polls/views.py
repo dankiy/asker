@@ -101,5 +101,3 @@ def vote(request, question_id):
             )
 
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
-
-schema_view = get_swagger_view(title='Pastebin API')
