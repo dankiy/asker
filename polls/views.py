@@ -11,7 +11,6 @@ import os
 import boto3
 import botocore.session
 
-from django.conf.urls import url
 from rest_framework_swagger.views import get_swagger_view
 
 class IndexView(generic.ListView):
@@ -104,7 +103,3 @@ def vote(request, question_id):
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
 schema_view = get_swagger_view(title='Pastebin API')
-
-urlpatterns = [
-    url(r'^$', schema_view)
-]
