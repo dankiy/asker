@@ -10,5 +10,5 @@ urlpatterns = [
     path('<int:pk>/results/', views.ResultsView.as_view(), name='results'),
     path('<int:question_id>/vote/', views.vote, name='vote'),
     path('api/', api_views.QuestionListView.as_view(), name=None),
-    path('api/create', api_views.QuestionCreateView.as_view(), name=None),
+    path('api/<int:pk>', api_views.QuestionResultView.as_view(), name=None),
 ]

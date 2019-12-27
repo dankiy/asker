@@ -4,9 +4,4 @@ from rest_framework import serializers
 class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
-        fields = ('question_text', 'pub_date')
-
-class ChoiceSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Choice
-        fields = ('question', 'choice', 'votes')
+        fields = ('question_text', 'choice_set', 'pub_date')
